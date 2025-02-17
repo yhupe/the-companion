@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 
-whatsapp = Blueprint("main", __name__)
+whatsapp = Blueprint("whatsapp", __name__)
 
 @whatsapp.route("/whatsapp_incoming", methods=["POST"])
 def whatsapp_incoming():
