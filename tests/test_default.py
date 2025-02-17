@@ -15,4 +15,4 @@ def test_home_route(client):
 def test_status_route(client):
     response = client.get("/status")
     assert response.status_code == 200
-    assert response.json == {"message": "Up and running"}
+    assert response.json ==  {'API': '🟢', 'Conn_Twilio': '🟢', 'Database': '🟢', 'FOTH_MagicSauce': '🟢'}
