@@ -2,43 +2,18 @@ import requests
 import json
 import random
 
-
-class Question:
-    """Represents one single question"""
-
-    def __init__(self, question_text, incorrect_answers, correct_answer):
-        self.question_text = question_text
-        self.correct_answer = correct_answer
-        self.answers = incorrect_answers + [correct_answer]
-        random.shuffle(self.answers)
-
-    def display(self):
-        """Prints the question and all possible choices"""
-        print(self.question_text)
-        for index, answer in enumerate(self.answers, start=1):
-            print(f"{index}: {answer}")
-
-    def is_correct(self, user_choice):
-        """Checks whether user choice is right or wrong"""
-        try:
-            user_choice_index = int(user_choice) - 1
-            return self.answers[user_choice_index] == self.correct_answer
-        except (ValueError, IndexError):
-            return False
-
-
 class TriviaGame:
-    """Handles the trivia game"""
+    """Handles the trivia game and manages questions"""
 
     API_URL = "https://the-trivia-api.com/v2/questions/"
 
-    def __init__(self, rounds):
-        self.questions = []
-        self.rounds = rounds
-        self.load_questions()
+    def __init__(self):
+        self.question = None
+        self.load_question()
+        self.correct_index = None
 
-    def load_questions(self):
-        """Loads questions and saves them"""
+    def load_question(self):
+        """Loads a question"""
         response = requests.get(self.API_URL)
 
         if response.status_code != requests.codes.ok:
@@ -47,45 +22,38 @@ class TriviaGame:
 
         question_data = json.loads(response.text)
 
-        self.questions = [
-            Question(
-                item["question"]["text"],
-                item["incorrectAnswers"],
-                item["correctAnswer"],
-            )
-            for item in question_data
-        ]
+        item = question_data[0]
 
-    def play(self):
-        """Starts the game"""
-        print("\n🎉 Welcome to a round of trivia! 🎉\n")
+        self.question = {
+            "question_text": item["question"]["text"],
+            "incorrect_answers": item["incorrectAnswers"],
+            "correct_answer": item["correctAnswer"]
+        }
 
-        score = 0
-        rounds_played = 0
+    def get_question_text(self):
+        """Returns question all 4 possible answers and at least the right solution separately """
 
-        while rounds_played < self.rounds:
-            question = self.questions[rounds_played % len(self.questions)]
-            question.display()
+        question_text = self.question["question_text"]
+        incorrect_answers = self.question["incorrect_answers"]
+        correct_answer = self.question["correct_answer"]
 
-            user_answer = input("\nWhich answer do you think is correct? (Enter a number 1-4 or 'exit' to quit): ").strip()
+        answers = incorrect_answers + [correct_answer]
+        random.shuffle(answers)
+        self.correct_index = answers.index(correct_answer) + 1
 
-            if user_answer.lower() == 'exit':
-                print("❌ The game has ended.")
-                break
+        question_pack = f"""
+{question_text}
+{"\n".join(f"{i+1}. {item}" for i, item in enumerate(answers))}
+"""
 
-            if question.is_correct(user_answer):
-                print("✅ Correct! 🎉\n")
-                score += 1
-            else:
-                print(f"❌ Unfortunately you are wrong! The correct answer is: {question.correct_answer}\n")
+        return question_pack
 
-            rounds_played += 1
+    def is_correct(self, user_choice):
 
-        print(f"🏆 You answered {score} out of {self.rounds} questions correctly!")
-
-
+        return int(user_choice) == self.correct_index
 
 if __name__ == "__main__":
-
-    quiz = TriviaGame(rounds=1)
-    quiz.play()
+    quiz = TriviaGame()
+    question_text = quiz.get_question_text()
+    print(question_text)
+    print(quiz.is_correct("3"))
