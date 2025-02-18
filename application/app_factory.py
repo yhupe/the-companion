@@ -9,6 +9,7 @@ from flask import Flask
 
 from application.config import config
 from application.views.main_views import main
+from application.views.whatsapp import whatsapp
 
 base_dir = Path(__name__).parent.parent
 load_dotenv()
@@ -39,5 +40,6 @@ def create_app():
     app.logger.info(f"App started - Config name: {config_name}")
 
     app.register_blueprint(main)
+    app.register_blueprint(whatsapp)
 
     return app
