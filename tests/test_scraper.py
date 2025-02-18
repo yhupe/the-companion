@@ -1,6 +1,4 @@
 import pytest
-import requests
-from bs4 import BeautifulSoup
 from unittest.mock import patch, Mock
 from application.services.scraper import get_events, display_events
 
@@ -72,20 +70,18 @@ def test_display_events(capsys):
             "description": "Description 2"
         }
     ]
-    display_events(events)
-    captured = capsys.readouterr()
-    assert "Event: Event 1" in captured.out
-    assert "When: 2023-10-01" in captured.out
-    assert "Time: 10:00 AM" in captured.out
-    assert "Where: Location 1" in captured.out
-    assert "Description: Description 1" in captured.out
-    assert "Event: Event 2" in captured.out
-    assert "When: 2023-10-02" in captured.out
-    assert "Time: 11:00 AM" in captured.out
-    assert "Where: Location 2" in captured.out
-    assert "Description: Description 2" in captured.out
+    result = display_events(events)
+    assert "Event: Event 1" in result
+    assert "When: 2023-10-01" in result
+    assert "Time: 10:00 AM" in result
+    assert "Where: Location 1" in result
+    assert "Description: Description 1" in result
+    assert "Event: Event 2" in result
+    assert "When: 2023-10-02" in result
+    assert "Time: 11:00 AM" in result
+    assert "Where: Location 2" in result
+    assert "Description: Description 2" in result
 
 def test_display_no_events(capsys):
-    display_events([])
-    captured = capsys.readouterr()
-    assert "Sorry, there are no events for today." in captured.out
+    result = display_events([])
+    assert "Sorry, there are no events for today." in result

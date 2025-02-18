@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b228f2e-38ee-404a-84b3-832bbd2e1b8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/application/services/scraper.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Companion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Companion.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/services/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/services/scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

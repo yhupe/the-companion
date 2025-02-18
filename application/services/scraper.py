@@ -41,22 +41,22 @@ def get_events():
 
 def display_events(events):
     if not events:
-        print("Sorry, there are no events for today. Please check back later or tomorrow. Have a nice day.")
-        return
+        return "Sorry, there are no events for today. Please check back later or tomorrow. Have a nice day."
 
-    print("Here are the events for today:")
+    result = "Here are the events for today:\n"
     for event in events:
-        print("-" * 40)
-        print(f"Event: {event['title']}")
-        print(f"When: {event['date']}")
-        print(f"Time: {event['time']}")
-        print(f"Where: {event['location']}")
-        print(f"Description: {event['description']}")
-        print("-" * 40)
+        result += "-" * 40 + "\n"
+        result += f"Event: {event['title']}\n"
+        result += f"When: {event['date']}\n"
+        result += f"Time: {event['time']}\n"
+        result += f"Where: {event['location']}\n"
+        result += f"Description: {event['description']}\n"
+        result += "-" * 40 + "\n"
+    return result
 
 def main():
     events = get_events()
-    display_events(events)
+    print(display_events(events))
 
 if __name__ == "__main__":
     main()
