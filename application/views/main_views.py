@@ -10,4 +10,7 @@ def index():
 
 @main.route("/status")
 def status():
-    return {"message":"Up and running"}, 200
+    return {"API":"🟢",
+            "Database": "🟢",
+            "Conn_Twilio": "🟢",
+            "FOTH_MagicSauce": "🟢"}, 200
