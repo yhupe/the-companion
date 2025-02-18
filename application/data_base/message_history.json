@@ -1,12 +1,30 @@
 {
-    "einszweidrei": [
+    "whatsapp:+14155238886": [
         {
-            "Date": "2024-02-02",
-            "Body": "message"
+            "Date": "2025-02-18T15:12:00.715837",
+            "Body": "journal"
         },
         {
-            "Date": "2025-02-02",
-            "Body": "message"
+            "Date": "2025-02-18T15:13:35.332106",
+            "Body": "help"
+        },
+        {
+            "Date": "2025-02-18T15:13:59.410596",
+            "Body": "weather"
+        },
+        {
+            "Date": "2025-02-18T15:16:36.090535",
+            "Body": "this is a postman message"
+        }
+    ],
+    "whatsapp:+new number": [
+        {
+            "Date": "2025-02-18T15:26:32.980074",
+            "Body": "this is a new message"
+        },
+        {
+            "Date": "2025-02-18T15:26:59.555359",
+            "Body": "this is another new message just for Stephanie and Andrea"
         }
     ]
 }
