@@ -84,20 +84,8 @@ class TriviaGame:
         print(f"🏆 You answered {score} out of {self.rounds} questions correctly!")
 
 
-def get_rounds():
-    """Asks the user how many rounds they want to play (1 to 10)."""
-    while True:
-        try:
-            rounds = int(input("How many rounds would you like to play? (1 to 10): "))
-            if 1 <= rounds <= 10:
-                return rounds
-            else:
-                print("❌ Please enter a number between 1 and 10.")
-        except ValueError:
-            print("❌ Invalid input. Please enter a number.")
-
 
 if __name__ == "__main__":
-    rounds = get_rounds()
-    quiz = TriviaGame(rounds)
+
+    quiz = TriviaGame(rounds=1)
     quiz.play()
