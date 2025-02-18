@@ -1,7 +1,12 @@
 from flask import Blueprint, request
 from twilio.twiml.messaging_response import MessagingResponse
+from datetime import datetime
+from application.app import app
+from application.services.data_base_handling import DataHandling
 
 whatsapp = Blueprint("whatsapp", __name__)
+
+dh = DataHandling()
 
 COMMANDS = {
     "help": "Available commands: help, weather, journal, activities, advice, trivia",
@@ -24,10 +29,18 @@ def process_command(message):
 
 @whatsapp.route("/whatsapp_incoming", methods=["POST"])
 def whatsapp_incoming():
+
     incoming_message = request.form.get("Body")
     sender_number = request.form.get("From")
+    current_datetime = datetime.now()
+    app.logger.info(f"Incoming WhatsApp from {sender_number}")
+    data = {
+        "Date":current_datetime,
+        "Body": incoming_message
+    }
+    dh.append_storage(sender_number, data)
     response_text = process_command(incoming_message)
-    print(f"Received message: {incoming_message} from {sender_number}")
+
     twilio_response = MessagingResponse()
     twilio_response.message(response_text)
 
