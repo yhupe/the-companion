@@ -13,11 +13,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.data_base_handling.executor": "Run",
+    "Python.medication_handling.executor": "Run",
+    "Python.message_handling.executor": "Run",
+    "Python.profile_handling.executor": "Run",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/application/data_base" />
       <recent name="$PROJECT_DIR$/application/services" />
     </key>
   </component>
