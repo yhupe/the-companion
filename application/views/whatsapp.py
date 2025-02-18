@@ -71,7 +71,7 @@ def send_trivia_question(twilio_response)-> None:
     question_pack,correct_answer = tg.get_question_text()
     twilio_response.message(question_pack)
     print(question_pack)
-    time.sleep(20)
+    time.sleep(5)
     twilio_response.message(correct_answer)
     print(correct_answer)
 
