@@ -45,11 +45,10 @@ class TriviaGame:
 {question_text}
 {"\n".join(f"{i+1}. {item}" for i, item in enumerate(answers))}
 """
+        return question_pack, correct_answer
 
-        return question_pack
 
     def is_correct(self, user_choice):
-
         return int(user_choice) == self.correct_index
 
 if __name__ == "__main__":
