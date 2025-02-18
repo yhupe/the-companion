@@ -58,20 +58,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Flask server.Companion.executor": "Run",
-    "Python tests.pytest for test_defauklt.test_home_route.executor": "Run",
-    "Python tests.pytest for tests.test_default.executor": "Run",
-    "Python tests.pytest for tests.test_flask.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "11",
-    "last_opened_file_path": "/Users/dda/PycharmProjects/Companion/application",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+    "Python.data_base_handling.executor": "Run",
+    "Python.medication_handling.executor": "Run",
+    "Python.message_handling.executor": "Run",
+    "Python.profile_handling.executor": "Run",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -80,8 +71,8 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/application" />
-      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/application/data_base" />
+      <recent name="$PROJECT_DIR$/application/services" />
     </key>
   </component>
   <component name="RunManager" selected="Python tests.pytest for tests.test_flask">
