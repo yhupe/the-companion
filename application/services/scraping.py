@@ -39,24 +39,26 @@ def get_events():
         event_list.append(event_info)
     return event_list
 
+
 def display_events(events):
     if not events:
-        print("Sorry, there are no events for today. Please check back later or tomorrow. Have a nice day.")
-        return
+        return "Sorry, there are no events for today. Please check back later or tomorrow. Have a nice day."
 
-    print("Here are the events for today:")
+    event_str = "Here are the events for today:\n"
     for event in events:
-        print("-" * 40)
-        print(f"Event: {event['title']}")
-        print(f"When: {event['date']}")
-        print(f"Time: {event['time']}")
-        print(f"Where: {event['location']}")
-        print(f"Description: {event['description']}")
-        print("-" * 40)
+        event_str += "-" * 40 + "\n"
+        event_str += f"Event: {event['title']}\n"
+        event_str += f"When: {event['date']}\n"
+        event_str += f"Time: {event['time']}\n"
+        event_str += f"Where: {event['location']}\n"
+        event_str += f"Description: {event['description']}\n"
+        event_str += "-" * 40 + "\n"
+
+    return event_str
 
 def main():
     events = get_events()
     display_events(events)
-
+    #print(display_events(events)) #remove, was just to see that is working
 if __name__ == "__main__":
     main()
