@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b228f2e-38ee-404a-84b3-832bbd2e1b8f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/services/scraper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Companion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Companion.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Flask Main" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -33,21 +40,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "MightContainNuts"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MightContainNuts&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:yhupe/the-companion.git",
-    "accountId": "5ce603cb-ca6f-42ba-85fc-69773c875693"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:yhupe/the-companion.git&quot;,
+    &quot;accountId&quot;: &quot;5ce603cb-ca6f-42ba-85fc-69773c875693&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2tAYlDasnl4fcoTxUXMxXRAJCF9" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -58,10 +65,16 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python tests.Python tests in test_scraper.py.executor": "Run",
+    "Python tests.pytest for tests.test_flask.executor": "Run",
     "Python.data_base_handling.executor": "Run",
     "Python.medication_handling.executor": "Run",
     "Python.message_handling.executor": "Run",
     "Python.profile_handling.executor": "Run",
+    "Python.scraper.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "2",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
@@ -75,7 +88,7 @@
       <recent name="$PROJECT_DIR$/application/services" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for tests.test_flask">
+  <component name="RunManager">
     <configuration name="Companion" type="Python.FlaskServer">
       <module name="Companion" />
       <option name="target" value="$PROJECT_DIR$/application/app.py" />
@@ -121,7 +134,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Flask server.Companion" />
       <item itemvalue="Python tests.pytest for tests.test_flask" />
     </list>
     <recent_temporary>
@@ -133,8 +145,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PY-243.22562.180" />
-        <option value="bundled-python-sdk-85c76a3b01b3-9a18a617cbe4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.22562.180" />
+        <option value="bundled-python-sdk-fc1d50d2d915-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.24978.54" />
       </set>
     </attachedChunks>
   </component>
