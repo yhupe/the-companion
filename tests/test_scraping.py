@@ -2,7 +2,7 @@ import pytest
 import requests
 from bs4 import BeautifulSoup
 from unittest.mock import patch, Mock
-from application.services.scraper import get_events, display_events
+from application.services.scraping import get_events, display_events
 
 # Mock HTML content for testing
 mock_html = '''
