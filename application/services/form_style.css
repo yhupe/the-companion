@@ -1,0 +1,172 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../assets/bg.png');
+    background-size: auto;
+    background-repeat: round;
+    background-attachment: fixed;
+    font-family: 'Open Sans', sans-serif;
+    position: relative; /* Add this line */
+}
+
+.floating-grandma, .floating-grandpa {
+    position: absolute;
+    z-index: -1; /* Ensure the images are behind other content */
+}
+
+.floating-grandpa {
+    top: 50%;
+    left: 15%;
+    width: auto; /* Adjust size as needed */
+    height: auto;
+}
+
+.floating-grandma {
+    right: 15%;
+    width: auto; /* Adjust size as needed */
+    height: auto;
+}
+
+header {
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 4rem; /* 64px */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    color: #ef4434;
+}
+
+h2 {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: 'Playwrite GB S', sans-serif;
+}
+
+h4 {
+    margin-bottom: 1em;
+    margin-top: 0;
+}
+
+.description {
+    font-size: 1.125rem; /* 18px */
+    margin-bottom: 1.5rem;
+    width: 500px;
+    text-align: left;
+}
+
+/* Reset form elements */
+input, select, textarea, button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    outline: none;
+    box-shadow: none;
+    appearance: none;
+}
+
+input, select, textarea {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 2em;
+    padding: 0.5em; /* Optional: Add some padding for better appearance */
+}
+
+/* Remove default styles for input fields */
+input, select, textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Remove default styles for buttons */
+button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+}
+
+/* Remove default styles for labels */
+label {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+}
+.form-container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
+    padding: 20px; /* Add some padding for better appearance */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    .description {
+        width: 90%;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* 40px */
+    }
+
+    h2 {
+        font-size: 1.25rem; /* 20px */
+    }
+
+    .floating-grandpa {
+        top: 40%;
+        left: 5%;
+    }
+
+    .floating-grandma {
+        bottom: 40%;
+        right: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-color: #F3E2C6;
+        background-image: none;
+        padding-top: 0;
+        margin-top: 0;
+        min-height: 0;
+    }
+
+    h1 {
+        font-size: 2rem; /* 32px */
+    }
+
+    h2 {
+        font-size: 1rem; /* 16px */
+    }
+    .description {
+        font-size: 1rem; /* 16px */
+    }
+    .floating-grandpa, .floating-grandma {
+        display: none; /* Hide floating images on very small screens */
+    }
+    .form-container {
+        width: 90%;
+        margin:0;
+    }
+}
