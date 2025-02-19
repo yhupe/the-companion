@@ -68,7 +68,6 @@ def whatsapp_incoming():
             send_trivia_question(sender_number,twilio_response)
 
         case "journal":
-            send_whatsapp_message(sender_number, response_text)
             get_sentiment_journal(sender_number,incoming_message)
 
 
@@ -98,7 +97,7 @@ def send_trivia_question(sender_number, twilio_response)-> None:
     print(correct_answer)
 
 def get_sentiment_journal(sender_number, journal_entry)->None:
-    print("initialising Triva")
+    print("initialising Journal")
     mood, advice = ai.get_sentiment_and_advice(journal_entry)
     jh = JournalHandling()
     data = {
