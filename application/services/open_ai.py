@@ -1,21 +1,17 @@
-from openai import OpenAI
+
 import os
 from flask.cli import load_dotenv
+import openai
 
 load_dotenv()
 
 
 class OpenAI:
 
-    def __init__(self,):
+    def __init__(self):
 
-        # self.client = OpenAI(
-        #     api_key=os.environ.get("OPENAI_API_KEY"),
-        # )
-
+        openai.api_key = os.environ.get("OPENAI_API_KEY")
         self.MODEL="gpt-4o-mini"
-
-
 
 
     def get_sentiment_and_advice(self,text):
@@ -27,7 +23,7 @@ class OpenAI:
         Followed by advice on how to improve the mood, written clearly and concisely.
         Ensure the response always includes both the category and the advice.
         """
-        completion = self.client.chat.completions.create(
+        completion = openai.chat.completions.create(
             model=self.MODEL,
             messages=[
                 {"role": "system",
@@ -36,7 +32,8 @@ class OpenAI:
                 ]
             )
         response = completion.choices[0].message.content
-        mood, advice = response.split('.', 1)
+        print(response)
+        mood, advice = response.split('\n', 1)
         mood = mood.strip()
         advice = advice.strip()
         print(mood)
@@ -45,7 +42,11 @@ class OpenAI:
         return mood,advice
 
 
-# ai = OpenAI()
-# text = "I feel really stressed out and anxious. My work is overwhelming, and I don’t have enough time for myself."
-# sentiment_advice = ai.get_sentiment_and_advice(text)
-# print(sentiment_advice)
+
+
+
+ai = OpenAI()
+text = " journal I feel amazing today, the sun is shining and i feeel good"
+sentiment_advice = ai.get_sentiment_and_advice(text)
+print(sentiment_advice)
+

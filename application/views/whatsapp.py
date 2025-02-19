@@ -6,6 +6,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
 from datetime import datetime
 from application.services.message_handling import MessageHandling
+from application.services.journal import JournalHandling
 from application.services.trivia_class import TriviaGame
 from application.services.open_ai import OpenAI
 
@@ -16,16 +17,17 @@ whatsapp = Blueprint("whatsapp", __name__)
 dh = MessageHandling()
 tg = TriviaGame()
 ai = OpenAI()
-
-
 TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER")
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 
 client = Client(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN)
 
+current_datetime = datetime.now()
+current_datetime_str = current_datetime.isoformat()
+
 COMMANDS = {
-    "help": "Available commands: help, weather, journal, activities, advice, trivia",
+    "help": "Available commands: help, weather, journal <journal entry>, activities, advice, trivia",
     "trivia": "Let me ask you a trivia question  😆",
     "activities": "Let me see what's going on in your area",
     "advice": "Always code as if the person maintaining it is a violent psychopath who knows where you live. 😅",
@@ -48,9 +50,8 @@ def whatsapp_incoming():
 
     incoming_message = request.form.get("Body")
     sender_number = request.form.get("From")
-    current_datetime = datetime.now()
-    current_datetime_str = current_datetime.isoformat()
-    print(f"Incoming WhatsApp from {sender_number}")
+
+    print(f"Incoming Message from {sender_number} : {incoming_message}")
     data = {
         "Date":current_datetime_str,
         "Body": incoming_message
@@ -61,13 +62,19 @@ def whatsapp_incoming():
 
     twilio_response = MessagingResponse()
 
-    if command == "trivia":
-        send_whatsapp_message(sender_number,response_text)
-        send_trivia_question(sender_number,twilio_response)
-    else:
-        twilio_response.message(response_text)
+    match command:
+        case "trivia":
+            send_whatsapp_message(sender_number,response_text)
+            send_trivia_question(sender_number,twilio_response)
+
+        case "journal":
+            send_whatsapp_message(sender_number, response_text)
+            get_sentiment_journal(sender_number,incoming_message)
 
 
+
+        case _ :
+            twilio_response.message(response_text)
 
     return str(twilio_response)
 
@@ -88,12 +95,20 @@ def send_trivia_question(sender_number, twilio_response)-> None:
     print(question_pack)
     time.sleep(10)
     send_whatsapp_message(sender_number, correct_answer)
-    #twilio_response.message(correct_answer)
     print(correct_answer)
 
-def get_sentiment_journal(journal_entry)->None:
+def get_sentiment_journal(sender_number, journal_entry)->None:
     print("initialising Triva")
     mood, advice = ai.get_sentiment_and_advice(journal_entry)
+    jh = JournalHandling()
+    data = {
+        "Date": current_datetime_str,
+        "Body": journal_entry,
+        "mood": mood,
+        "advice":advice
+    }
+    jh.append_storage(data, sender_number)
+    send_whatsapp_message(sender_number, advice)
 
 
 

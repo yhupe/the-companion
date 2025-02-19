@@ -2,11 +2,11 @@ import json
 import os
 from pathlib import Path
 
-class MessageHandling:
+class JournalHandling:
     def __init__(self):
         storage_path = Path(__file__).parent.parent
 
-        self.storage = storage_path / "data_base" / "message_history.json"
+        self.storage = storage_path / "data_base" / "journal.json"
         self.load_storage()
         self.local_data = {}
 
