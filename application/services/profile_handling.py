@@ -26,21 +26,12 @@ class ProfileHandling:
     def append_storage(self, message_dict, whatsapp_nr):
         """Appends a message under the given WhatsApp number, checking for duplicates."""
         if whatsapp_nr not in self.local_data:
-            self.local_data[whatsapp_nr] = []
+            self.local_data[whatsapp_nr] = [data]
+            self.write_storage()
 
+        else:
+            print("Number already registered")
 
-        for msg in self.local_data[whatsapp_nr]:
-            if msg['Body'] == message_dict['Body'] and msg['Date'] == message_dict[
-                'Date']:
-                print(
-                    f"Duplicate message with body '{message_dict['Body']}' and date '{message_dict['Date']}' found. Skipping append.")
-                return
-
-
-        self.local_data[whatsapp_nr].append(message_dict)
-
-
-        self.write_storage()
 
     def write_storage(self):
         """Writes the local_data dictionary to the JSON file."""
