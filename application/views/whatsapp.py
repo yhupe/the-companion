@@ -11,7 +11,7 @@ from application.services.trivia_class import TriviaGame
 from application.services.open_ai import OpenAI
 from application.services.scraping import EventScraper
 from application.services.cat import get_cat_image
-from application.services.Weather_api import get_weather
+from application.services.weather_api import get_weather
 
 WhatsAppNumber = str
 
