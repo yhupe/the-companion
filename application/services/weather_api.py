@@ -35,7 +35,7 @@ def get_weather():
         else:
             sunrise_time, sunset_time, sun_hours = "N/A", "N/A", "N/A"
 
-        weather_summary = """   
+        weather_summary = f"""   
 📍 City: Berlin
 🌡 Temperature: {temp}°C (Feels like: {feels_like}°C)
 💧 Humidity: {humidity}%
