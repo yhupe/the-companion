@@ -25,7 +25,6 @@ def user_registration():
     # Check if the form is submitted and valid
     if form.validate_on_submit():
         pf = ProfileHandling()
-        username = form.username.data
         whatsapp_number = form.whatsapp_number.data
         user_name = form.user_name.data
         current_date = datetime.now()
