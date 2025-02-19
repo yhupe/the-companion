@@ -9,6 +9,7 @@ from application.services.message_handling import MessageHandling
 from application.services.journal import JournalHandling
 from application.services.trivia_class import TriviaGame
 from application.services.open_ai import OpenAI
+from application.services.scraping import EventScraper
 
 WhatsAppNumber = str
 
@@ -16,9 +17,12 @@ whatsapp = Blueprint("whatsapp", __name__)
 
 dh = MessageHandling()
 tg = TriviaGame()
-TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER")
-TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
-TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+ai = OpenAI()
+
+TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER_2")
+TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID_2")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN_2")
+print(TWILIO_WHATSAPP_NUMBER, TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 client = Client(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN)
 
@@ -26,12 +30,20 @@ current_datetime = datetime.now()
 current_datetime_str = current_datetime.isoformat()
 
 COMMANDS = {
-    "help": "Available commands: help, weather, journal <journal entry>, activities, advice, trivia",
+    "help": """Available commands: 
+    help, 
+    weather, 
+    journal <journal entry>, 
+    activities, 
+    advice, 
+    trivia,
+    joke""",
     "trivia": "Let me ask you a trivia question  😆",
     "activities": "Let me see what's going on in your area",
     "advice": "Always code as if the person maintaining it is a violent psychopath who knows where you live. 😅",
     "journal": "Tell me about your day - what was good, what was not so good",
-    "weather": "Let me check what the weather is like in your area"
+    "weather": "Let me check what the weather is like in your area",
+    "joke": "Let me tell you a dad joke 😂"
 }
 
 
@@ -65,9 +77,17 @@ def whatsapp_incoming():
         case "trivia":
             send_whatsapp_message(sender_number,response_text)
             send_trivia_question(sender_number,twilio_response)
-
         case "journal":
             get_sentiment_journal(sender_number,incoming_message)
+        case "joke":
+            send_whatsapp_message(sender_number, response_text)
+            get_joke(sender_number)
+        case "activities":
+            send_whatsapp_message(sender_number, response_text)
+            get_activities(sender_number)
+        case "advice":
+            send_whatsapp_message(sender_number, response_text)
+            get_advice(sender_number)
 
 
 
@@ -109,8 +129,31 @@ def get_sentiment_journal(sender_number, journal_entry)->None:
     jh.append_storage(data, sender_number)
     send_whatsapp_message(sender_number, advice)
 
+def get_joke(sender_number) -> None:
+    print("initialising joke")
+    joke = ai.get_dad_joke()
+    send_whatsapp_message(sender_number, joke)
+
+def get_advice(sender_number) -> None:
+    print("initialising advice")
+    advice = ai.get_advice()
+    send_whatsapp_message(sender_number, advice)
+
+def get_activities(sender_number) -> None:
+    print("initialising activities")
+    ws = EventScraper()
+    events = ws.display_events()
+    print(f"Events retrieved: {events}")
+    if events:
+        print("Sending WhatsApp message...")
+        send_whatsapp_message(sender_number, events)
+    else:
+        print("No events to send.")
+
 
 def send_whatsapp_message(sender_number:WhatsAppNumber ,  message_body:str):
+    print(f"Sending message to: {sender_number}")
+    print(f"Message content: {message_body}")
 
     message = client.messages.create(
         from_=TWILIO_WHATSAPP_NUMBER,
