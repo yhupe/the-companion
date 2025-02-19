@@ -24,7 +24,7 @@
 <body>
     <h2>Registration Form</h2>
 
-    <form method="POST" action="{{ url_for('main.registration') }}">
+    <form method="POST" action="{{ url_for('main.user_registration') }}">
         {{ form.hidden_tag() }}
 
         <p>
@@ -43,21 +43,6 @@
             {% endfor %}
         </p>
 
-        <p>
-            {{ form.first_name.label }}<br>
-            {{ form.first_name() }}
-            {% for error in form.first_name.errors %}
-                <span class="error">{{ error }}</span>
-            {% endfor %}
-        </p>
-
-        <p>
-            {{ form.last_name.label }}<br>
-            {{ form.last_name() }}
-            {% for error in form.last_name.errors %}
-                <span class="error">{{ error }}</span>
-            {% endfor %}
-        </p>
 
         <p>
             {{ form.submit() }}

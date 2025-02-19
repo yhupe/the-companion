@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for
 from datetime import datetime
 from application.services.forms import UserForm
+from application.services.profile_handling import ProfileHandling
 main = Blueprint("main", __name__)
 
 
@@ -18,24 +19,26 @@ def status():
 
 
 @main.route("/registration", methods=["GET", "POST"])
-def registration():
+def user_registration():
     form = UserForm()
 
     # Check if the form is submitted and valid
     if form.validate_on_submit():
+        pf = ProfileHandling()
         username = form.username.data
         whatsapp_number = form.whatsapp_number.data
-        email = form.email.data
-        first_name = form.first_name.data
-        last_name = form.last_name.data
-        date_created = str(datetime.datetime.now())
+        user_name = form.user_name.data
+        current_date = datetime.now()
+        date_created = str(current_date)
+        data = {
+            user_name : user_name,
+            date_created: date_created
+        }
+        pf.append_storage(data, whatsapp_number)
 
         # Print the collected form data to the console (for testing)
-        print(f"Username: {username}")
+        print(f"User name: {user_name}")
         print(f"WhatsApp Number: {whatsapp_number}")
-        print(f"Email: {email}")
-        print(f"First Name: {first_name}")
-        print(f"Last Name: {last_name}")
         print(f"Date Created: {date_created}")
 
         # TODO: Add the collected user data to the database here

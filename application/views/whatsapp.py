@@ -17,12 +17,10 @@ whatsapp = Blueprint("whatsapp", __name__)
 
 dh = MessageHandling()
 tg = TriviaGame()
-ai = OpenAI()
 
 TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER_2")
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID_2")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN_2")
-print(TWILIO_WHATSAPP_NUMBER, TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 client = Client(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN)
 
@@ -131,11 +129,13 @@ def get_sentiment_journal(sender_number, journal_entry)->None:
 
 def get_joke(sender_number) -> None:
     print("initialising joke")
+    ai = OpenAI
     joke = ai.get_dad_joke()
     send_whatsapp_message(sender_number, joke)
 
 def get_advice(sender_number) -> None:
     print("initialising advice")
+    ai = OpenAI
     advice = ai.get_advice()
     send_whatsapp_message(sender_number, advice)
 
