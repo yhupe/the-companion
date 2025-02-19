@@ -19,9 +19,9 @@ whatsapp = Blueprint("whatsapp", __name__)
 dh = MessageHandling()
 tg = TriviaGame()
 
-TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER_2")
-TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID_2")
-TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN_2")
+TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER")
+TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 
 client = Client(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN)
 
