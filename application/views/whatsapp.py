@@ -135,13 +135,13 @@ def get_sentiment_journal(sender_number, journal_entry)->None:
 
 def get_joke(sender_number) -> None:
     print("initialising joke")
-    ai = OpenAI
+    ai = OpenAI()
     joke = ai.get_dad_joke()
     send_whatsapp_message(sender_number, joke)
 
 def get_advice(sender_number) -> None:
     print("initialising advice")
-    ai = OpenAI
+    ai = OpenAI()
     advice = ai.get_advice()
     send_whatsapp_message(sender_number, advice)
 
