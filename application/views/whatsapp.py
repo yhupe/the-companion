@@ -16,8 +16,8 @@ WhatsAppNumber = str
 
 whatsapp = Blueprint("whatsapp", __name__)
 
-dh = MessageHandling()
-tg = TriviaGame()
+
+
 
 TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER")
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
@@ -58,6 +58,7 @@ def process_command(message):
 
 @whatsapp.route("/whatsapp_incoming", methods=["POST"])
 def whatsapp_incoming():
+    dh = MessageHandling()
 
     incoming_message = request.form.get("Body")
     sender_number = request.form.get("From")
@@ -111,6 +112,7 @@ def whatsapp_status_callback():
     return "", 200
 
 def send_trivia_question(sender_number)-> None:
+    tg = TriviaGame()
     print("initialising Triva")
     question_pack,correct_answer = tg.get_question_text()
     send_whatsapp_message(sender_number, question_pack)

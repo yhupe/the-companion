@@ -44,16 +44,21 @@ class Weather:
 
         try:
             # Get sunrise and sunset times from the response and parse them into datetime objects
-            sunrise = datetime.fromisoformat(self.weather_data["sunrise"]).replace(tzinfo=timezone.utc)
-            sunset = datetime.fromisoformat(self.weather_data["sunset"]).replace(tzinfo=timezone.utc)
+            sunrise = datetime.fromisoformat(str(self.weather_data["sunrise"])).replace(tzinfo=timezone.utc)
+            sunset = datetime.fromisoformat(str(self.weather_data["sunset"])).replace(tzinfo=timezone.utc)
+            print(f"Sunrise: {sunrise}")
+            print(f"Sunset: {sunrise}")
 
             # Convert to Berlin time using pytz
             berlin_tz = pytz.timezone("Europe/Berlin")
             sunrise = sunrise.astimezone(berlin_tz)
+            print(f"Sunrise: {sunrise}")
             sunset = sunset.astimezone(berlin_tz)
+            print(f"Sunset: {sunrise}")
 
             # Calculate sun hours
             sun_hours = (sunset - sunrise).seconds // 3600  # Convert seconds to hours
+            print(f"Sun hours: {sun_hours}")
             return sunrise.strftime('%H:%M'), sunset.strftime('%H:%M'), sun_hours
         except KeyError:
             return None, None, None

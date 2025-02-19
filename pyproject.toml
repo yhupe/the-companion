@@ -20,6 +20,7 @@ requests = "^2.32.3"
 flask-wtf = "^1.2.2"
 bs4 = "^0.0.2"
 openai = "^1.63.2"
+pytz = "^2025.1"
 
 
 [build-system]
