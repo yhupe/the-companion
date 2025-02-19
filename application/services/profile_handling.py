@@ -26,7 +26,7 @@ class ProfileHandling:
     def append_storage(self, message_dict, whatsapp_nr):
         """Appends a message under the given WhatsApp number, checking for duplicates."""
         if whatsapp_nr not in self.local_data:
-            self.local_data[whatsapp_nr] = [data]
+            self.local_data[whatsapp_nr] = [message_dict]
             self.write_storage()
 
         else:
