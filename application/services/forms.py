@@ -8,7 +8,7 @@ from wtforms.validators import DataRequired, Email
 
 
 class UserForm(FlaskForm):
-    username = StringField("Username", validators=[DataRequired()])
+    user_name = StringField("Username", validators=[DataRequired()])
     whatsapp_number = StringField("WhatsApp Number", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
