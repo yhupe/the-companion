@@ -1,5 +1,9 @@
 The Companion
+![Image](https://github.com/user-attachments/assets/6502b02f-a571-4fae-8e5a-891aea9a76ac)
+**Description**
+A friendly WhatsApp ChatBot designed to help seniors to live independently and stay healthy. 
 
+The Companion simplifies daily tasks, provides medication reminders, facilitates easy communication, and offers access to important information. Everything through conversations on WhatsApp - just like asking a family member or a friend for help.
 **Overview**
 
 This project demonstrates how to use Twilio’s API to send and receive messages via WhatsApp. It provides a simple Python interface to interact with Twilio’s WhatsApp service for building automated communication features such as customer support, notifications, and more.
