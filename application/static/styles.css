@@ -1,0 +1,195 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../static/bg.png');
+    background-size: auto;
+    background-repeat: round;
+    background-attachment: fixed;
+    font-family: 'Open Sans', sans-serif;
+    position: relative; /* Add this line */
+}
+
+.floating-grandma, .floating-grandpa {
+    position: absolute;
+    z-index: -1; /* Ensure the images are behind other content */
+}
+
+.floating-grandpa {
+    top: 50%;
+    left: 15%;
+    width: auto; /* Adjust size as needed */
+    height: auto;
+}
+
+.floating-grandma {
+    right: 15%;
+    width: auto; /* Adjust size as needed */
+    height: auto;
+}
+
+header {
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 4rem; /* 64px */
+    font-weight: 700;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #ef4434;
+}
+
+h2 {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 600;
+    font-family: 'Playwrite GB S', sans-serif;
+    margin: 0;
+}
+
+h4 {
+    margin-bottom: 1em;
+    margin-top: 0;
+}
+
+.description {
+    font-size: 1.125rem; /* 18px */
+    margin-bottom: 1.5rem;
+    width: 500px;
+    text-align: left;
+}
+.form-container {
+    width: 50%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the form horizontally */
+    margin: 0 auto; /* Center the form container */
+}
+form, input, button, label, select, textarea{
+    font-size: 1.125rem; /* 18px */
+    font-family: 'Open Sans', sans-serif;
+    }
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    align-items: center;
+    width:400px;
+}
+
+.form-row label {
+    align-self: flex-start; /* Align labels to the left */
+    margin-bottom: 0.5em;
+}
+input{
+    border: 3px solid #264d8c;
+    border-radius: 2em;
+    padding: 0.5em 1em;
+    width: 100%;}
+#submit{
+    background-color: #264d8c;
+    color: white;
+    cursor: pointer;
+    margin:15px auto;
+    font-size: 1.125rem; /* 18px */
+    font-family: 'Open Sans', sans-serif;
+    }
+.success-message {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0 2rem;
+    border-radius: 1em;
+    margin-top: 2em;
+}
+.success-message h3{
+    color: #264D8C;
+    font-size: 2.1rem;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin-top: 2em;
+}
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    .description {
+        width: 90%;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* 40px */
+    }
+
+    h2 {
+        font-size: 1.25rem; /* 20px */
+    }
+
+    .floating-grandpa {
+        top: 40%;
+        left: 5%;
+    }
+
+    .floating-grandma {
+        bottom: 40%;
+        right: 5%;
+    }
+
+    .form-container {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    .form-row {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-color: #F3E2C6;
+        background-image: none;
+        padding-top: 0;
+        margin-top: 0;
+        min-height: 0;
+    }
+
+    h1 {
+        font-size: 2rem; /* 32px */
+    }
+
+    h2 {
+        font-size: 1rem; /* 16px */
+    }
+
+    .description {
+        font-size: 1rem; /* 16px */
+    }
+
+    .floating-grandpa, .floating-grandma {
+        display: none; /* Hide floating images on very small screens */
+    }
+
+    .form-container {
+        width: 95%;
+        margin: 0;
+        padding: 1rem;
+    }
+
+    .form-row {
+        width: 90%;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    #submit {
+        display: block;
+        margin: 15px;
+    }
+}}
