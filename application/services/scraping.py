@@ -79,17 +79,17 @@ class EventScraper:
 
         return event_str
 
-    def main(self):
-        # Get the list of events
-        self.get_events()
-        # Display the events (currently commented out)
-        response = self.display_events()
-        return response
+    # def main(self):
+    #     # Get the list of events
+    #     self.get_events()
+    #     # Display the events (currently commented out)
+    #     response = self.display_events()
+    #     return response
 
 
 
 # if __name__ == '__main__':
 #     ws = EventScraper()
-#     area_events = ws.main()
+#     area_events = ws.display_events()
 #     print(area_events)
 #     print(type(area_events))

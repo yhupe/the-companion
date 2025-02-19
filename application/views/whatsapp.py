@@ -84,7 +84,10 @@ def whatsapp_incoming():
             get_joke(sender_number)
         case "activities":
             send_whatsapp_message(sender_number, response_text)
-
+            get_activities(sender_number)
+        case "advice":
+            send_whatsapp_message(sender_number, response_text)
+            get_advice(sender_number)
 
 
 
@@ -130,10 +133,10 @@ def get_joke(sender_number) -> None:
     joke = ai.get_dad_joke()
     send_whatsapp_message(sender_number, joke)
 
-def get_joke(sender_number) -> None:
-    print("initialising activities")
-    joke = ai.get_dad_joke()
-    send_whatsapp_message(sender_number, joke)
+def get_advice(sender_number) -> None:
+    print("initialising advice")
+    advice = ai.get_advice()
+    send_whatsapp_message(sender_number, advice)
 
 def get_activities(sender_number) -> None:
     print("initialising activities")
