@@ -15,7 +15,8 @@ pytest = "^8.3.4"
 pytest-cov = "^6.0.0"
 pytest-sugar = "^1.0.0"
 twilio = "^9.4.5"
-openai = "^1.63.2"
+beautifulsoup4 = "^4.13.3"
+requests = "^2.32.3"
 
 
 [build-system]
