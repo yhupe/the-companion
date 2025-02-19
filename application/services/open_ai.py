@@ -44,9 +44,9 @@ class OpenAI:
 
 
 
-
-ai = OpenAI()
-text = "journal I feel amazing today, the sun is shining and i feeel good"
-sentiment_advice = ai.get_sentiment_and_advice(text)
-print(sentiment_advice)
+#
+# ai = OpenAI()
+# text = "journal I feel amazing today, the sun is shining and i feeel good"
+# sentiment_advice = ai.get_sentiment_and_advice(text)
+# print(sentiment_advice)
 
