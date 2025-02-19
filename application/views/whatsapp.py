@@ -16,7 +16,6 @@ whatsapp = Blueprint("whatsapp", __name__)
 
 dh = MessageHandling()
 tg = TriviaGame()
-ai = OpenAI()
 TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER")
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
@@ -98,6 +97,7 @@ def send_trivia_question(sender_number, twilio_response)-> None:
 
 def get_sentiment_journal(sender_number, journal_entry)->None:
     print("initialising Journal")
+    ai = OpenAI()
     mood, advice = ai.get_sentiment_and_advice(journal_entry)
     jh = JournalHandling()
     data = {
@@ -108,7 +108,6 @@ def get_sentiment_journal(sender_number, journal_entry)->None:
     }
     jh.append_storage(data, sender_number)
     send_whatsapp_message(sender_number, advice)
-
 
 
 def send_whatsapp_message(sender_number:WhatsAppNumber ,  message_body:str):

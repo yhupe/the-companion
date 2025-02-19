@@ -5,7 +5,9 @@ base_dir = Path(__name__).parent.parent
 
 class Config:
 
-    SECRET_KEY = os.environ.get("SECRET_KEY")
+
+
+    SECRET_KEY = os.environ.get("SECRET_KEY", 'default-secret-key')
 
     @staticmethod
     def init_app(app):
@@ -14,8 +16,6 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-
-
 
 
 class TestConfig(Config):
