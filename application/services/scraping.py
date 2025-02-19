@@ -3,9 +3,10 @@ from bs4 import BeautifulSoup
 
 class EventScraper:
 
-
     def __init__(self):
+        print("initialising EventScraper")
         self.event_list = []
+        self.get_events()
 
     def get_events(self):
         # URL of the webpage to scrape
@@ -24,7 +25,6 @@ class EventScraper:
         soup = BeautifulSoup(response.content, 'html.parser')
         # Find all event elements on the page (limit to the first 4)
         events = soup.find_all('li', class_='offer-card')[:4]
-        self.event_list = []
 
         # Iterate over each event element
         for event in events:
@@ -88,8 +88,8 @@ class EventScraper:
 
 
 
-if __name__ == '__main__':
-    ws = EventScraper()
-    events = ws.main()
-    print(events)
-    print(type(events))
+# if __name__ == '__main__':
+#     ws = EventScraper()
+#     area_events = ws.main()
+#     print(area_events)
+#     print(type(area_events))

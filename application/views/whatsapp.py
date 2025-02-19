@@ -138,7 +138,7 @@ def get_joke(sender_number) -> None:
 def get_activities(sender_number) -> None:
     print("initialising activities")
     ws = EventScraper()
-    events = ws.main()
+    events = ws.display_events()
     print(f"Events retrieved: {events}")
     if events:
         print("Sending WhatsApp message...")
