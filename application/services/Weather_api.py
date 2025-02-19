@@ -6,7 +6,7 @@ latitude = 52.5200
 longitude = 13.4050
 
 api_url = f'https://api.api-ninjas.com/v1/weather?lat={latitude}&lon={longitude}'
-api_key = '+kAwtvHVtZmB9W0KfmYwTg==IVHZoWi6avk8SiLk'
+api_key = 'bSxUN/7vt5nlYjC0uxBbGg==SfAh0QrK6qmqVYv6'
 
 response = requests.get(api_url, headers={'X-Api-Key': api_key})
 
