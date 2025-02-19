@@ -101,7 +101,7 @@ def send_whatsapp_message(sender_number:WhatsAppNumber ,  message_body:str):
 
     message = client.messages.create(
         from_=TWILIO_WHATSAPP_NUMBER,
-        to=f"whatsapp:{sender_number}",
+        to=sender_number,
         body=message_body
     )
     print(f"Message sent with SID: {message.sid}")
