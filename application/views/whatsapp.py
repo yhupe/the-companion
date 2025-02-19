@@ -10,6 +10,7 @@ from application.services.journal import JournalHandling
 from application.services.trivia_class import TriviaGame
 from application.services.open_ai import OpenAI
 from application.services.scraping import EventScraper
+from application.services.cat import get_cat_image
 
 WhatsAppNumber = str
 
@@ -38,10 +39,11 @@ COMMANDS = {
     joke""",
     "trivia": "Let me ask you a trivia question  😆",
     "activities": "Let me see what's going on in your area",
-    "advice": "Always code as if the person maintaining it is a violent psychopath who knows where you live. 😅",
+    "advice": "Advice is luckily something you can ignore 😅",
     "journal": "Tell me about your day - what was good, what was not so good",
     "weather": "Let me check what the weather is like in your area",
-    "joke": "Let me tell you a dad joke 😂"
+    "joke": "Let me tell you a dad joke 😂",
+    "cat" : "Old people are cat people"
 }
 
 
@@ -86,6 +88,9 @@ def whatsapp_incoming():
         case "advice":
             send_whatsapp_message(sender_number, response_text)
             get_advice(sender_number)
+        case "cat":
+            send_whatsapp_message(sender_number, response_text)
+            send_cat_image(sender_number)
 
 
 
@@ -104,7 +109,7 @@ def whatsapp_status_callback():
 
     return "", 200
 
-def send_trivia_question(sender_number, twilio_response)-> None:
+def send_trivia_question(sender_number)-> None:
     print("initialising Triva")
     question_pack,correct_answer = tg.get_question_text()
     send_whatsapp_message(sender_number, question_pack)
@@ -149,6 +154,23 @@ def get_activities(sender_number) -> None:
         send_whatsapp_message(sender_number, events)
     else:
         print("No events to send.")
+
+
+def send_cat_image(sender_number: str):
+    image_url = get_cat_image()  # Get cat image URL
+    if image_url:
+        send_whatsapp_image(sender_number, image_url)  # Send it via Twilio
+    else:
+        print("Failed to get a cat image.")
+
+def send_whatsapp_image(sender_number: str, image_url: str):
+    message = client.messages.create(
+        from_=TWILIO_WHATSAPP_NUMBER,
+        to=sender_number,
+        media_url=[image_url]  # The image URL from the API response
+    )
+    print(f"Image sent with SID: {message.sid}")
+    return message.sid
 
 
 def send_whatsapp_message(sender_number:WhatsAppNumber ,  message_body:str):
