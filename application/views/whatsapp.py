@@ -11,13 +11,14 @@ from application.services.trivia_class import TriviaGame
 from application.services.open_ai import OpenAI
 from application.services.scraping import EventScraper
 from application.services.cat import get_cat_image
+from application.services.weather_api import get_weather
 
 WhatsAppNumber = str
 
 whatsapp = Blueprint("whatsapp", __name__)
 
-dh = MessageHandling()
-tg = TriviaGame()
+
+
 
 TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER")
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
@@ -58,6 +59,7 @@ def process_command(message):
 
 @whatsapp.route("/whatsapp_incoming", methods=["POST"])
 def whatsapp_incoming():
+    dh = MessageHandling()
 
     incoming_message = request.form.get("Body")
     sender_number = request.form.get("From")
@@ -92,6 +94,9 @@ def whatsapp_incoming():
         case "cat":
             send_whatsapp_message(sender_number, response_text)
             send_cat_image(sender_number)
+        case "weather":
+            send_whatsapp_message(sender_number, response_text)
+            get_weather_from_api(sender_number)
 
 
 
@@ -111,6 +116,7 @@ def whatsapp_status_callback():
     return "", 200
 
 def send_trivia_question(sender_number)-> None:
+    tg = TriviaGame()
     print("initialising Triva")
     question_pack,correct_answer = tg.get_question_text()
     send_whatsapp_message(sender_number, question_pack)
@@ -155,6 +161,18 @@ def get_activities(sender_number) -> None:
         send_whatsapp_message(sender_number, events)
     else:
         print("No events to send.")
+
+def get_weather_from_api(sender_number):
+    print("initialising weather")
+    weather = get_weather()
+    if weather:
+        print("Sending WhatsApp message...")
+        send_whatsapp_message(sender_number, weather)
+        return weather
+    else:
+        print("No weather info to send.")
+
+
 
 
 def send_cat_image(sender_number: str):
