@@ -21,7 +21,6 @@ class ProfileHandling:
         self.write_storage()
 
 
-
 if __name__ == '__main__':
     data_1 = ProfileHandling()
     data_1.load_storage()
