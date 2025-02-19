@@ -1,14 +1,28 @@
+import os
+import time
+
 from flask import Blueprint, request
 from twilio.twiml.messaging_response import MessagingResponse
+from twilio.rest import Client
 from datetime import datetime
 from application.services.message_handling import MessageHandling
 from application.services.trivia_class import TriviaGame
-import time
+from application.services.open_ai import OpenAI
+
+WhatsAppNumber = str
 
 whatsapp = Blueprint("whatsapp", __name__)
 
 dh = MessageHandling()
 tg = TriviaGame()
+ai = OpenAI()
+
+
+TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER")
+TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+
+client = Client(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN)
 
 COMMANDS = {
     "help": "Available commands: help, weather, journal, activities, advice, trivia",
@@ -48,7 +62,8 @@ def whatsapp_incoming():
     twilio_response = MessagingResponse()
 
     if command == "trivia":
-        send_trivia_question(twilio_response)
+        send_whatsapp_message(sender_number,response_text)
+        send_trivia_question(sender_number,twilio_response)
     else:
         twilio_response.message(response_text)
 
@@ -66,12 +81,30 @@ def whatsapp_status_callback():
 
     return "", 200
 
-def send_trivia_question(twilio_response)-> None:
+def send_trivia_question(sender_number, twilio_response)-> None:
     print("initialising Triva")
     question_pack,correct_answer = tg.get_question_text()
-    twilio_response.message(question_pack)
+    send_whatsapp_message(sender_number, question_pack)
     print(question_pack)
-    #time.sleep(5)
-    twilio_response.message(correct_answer)
+    time.sleep(10)
+    send_whatsapp_message(sender_number, correct_answer)
+    #twilio_response.message(correct_answer)
     print(correct_answer)
+
+def get_sentiment_journal(journal_entry)->None:
+    print("initialising Triva")
+    mood, advice = ai.get_sentiment_and_advice(journal_entry)
+
+
+
+def send_whatsapp_message(sender_number:WhatsAppNumber ,  message_body:str):
+
+    message = client.messages.create(
+        from_=TWILIO_WHATSAPP_NUMBER,
+        to=f"whatsapp:{sender_number}",
+        body=message_body
+    )
+    print(f"Message sent with SID: {message.sid}")
+    return message.sid
+
 
