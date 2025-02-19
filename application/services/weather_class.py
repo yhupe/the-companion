@@ -4,26 +4,39 @@ import json
 import pytz  # Import pytz for timezone handling
 
 class Weather:
-    API_URL = "https://forecast.meteonomiqs.com/v3_1/forecast/{latitude}/{longitude}"
-    API_KEY = "9wxowjP7pBaPpP5dx5GN5oxb4pGJm7V2hqQIFWpe"
-    LAT = 52.5200  # Berlin
-    LON = 13.4050
+    latitude = 52.5200  # Berlin
+    longitude = 13.4050
+
+    api_url = f'https://api.api-ninjas.com/v1/weather?lat={latitude}&lon={longitude}'
+    response = requests.get(api_url, headers={'X-Api-Key': 'bSxUN/7vt5nlYjC0uxBbGg==SfAh0QrK6qmqVYv6'})
+    if response.status_code == requests.codes.ok:
+        print(response.text)
+    else:
+        print("Error:", response.status_code, response.__dict__)
 
     def __init__(self):
         self.weather_data = None
         self.fetch_weather()
 
-    def fetch_weather(self):  # Fetch weather data
-        url = self.API_URL.format(latitude=self.LAT, longitude=self.LON)
-        headers = {"x-api-key": self.API_KEY}
+    def fetch_weather(self):
+        latitude = 52.5200  # Berlin
+        longitude = 13.4050
+                             # Fetch weather data
+        api_url =  f'https://api.api-ninjas.com/v1/weather?lat={latitude}&lon={longitude}'
+        headers = {'X-Api-Key': 'bSxUN/7vt5nlYjC0uxBbGg==SfAh0QrK6qmqVYv6'}
 
-        response = requests.get(url, headers=headers)
+        try:
+            response = requests.get(api_url, headers=headers)
+            print("Raw response:", response.text)  # Print raw response for debugging
 
-        if response.status_code != 200:
-            print("Error:", response.status_code, response.text)
-            return
+            if response.status_code != 200:
+                print("Error:", response.status_code, response.text)
+                return
 
-        self.weather_data = response.json()
+            self.weather_data = response.json()
+
+        except requests.RequestException as e:
+            print("Request failed:", e)
 
     def get_sun_hours(self):
         if not self.weather_data:
@@ -45,7 +58,7 @@ class Weather:
         except KeyError:
             return None, None, None
         except ValueError:
-            # Handle cases where datetime parsing fails
+            # Handle cases where datetime parsing fails!!!!!!!
             return None, None, None
 
     def get_weather_info(self):
@@ -55,24 +68,25 @@ class Weather:
 
         try:
             # Extract necessary data from the weather response
-            temp_min = self.weather_data["temperature"]["min"]
-            temp_max = self.weather_data["temp_max"]
-            weather_desc = self.weather_data["weather_desc"]
+            temp_min = self.weather_data["min_temp"]
+            temp_max = self.weather_data["max_temp"]
+            temperature = self.weather_data["temp"]
             sunrise, sunset, sun_hours = self.get_sun_hours()
 
-            response = {
-                "city": "Berlin",
-                "max_temperature": f"{temp_max}°C",
-                "min_temperature": f"{temp_min}°C",
-                "condition": weather_desc,
-                "sun_hours": f"{sun_hours} hours" if sun_hours else "N/A",
-                "sunset_time": sunset if sunset else "N/A"
-            }
+            response = f"""
+            Temperature:{temperature}
+            Mini temperature: {temp_min}
+            Max temperature: {temp_max}
+            Sunrise: {sunrise}
+            Sunset:{sunset}
+            Sun hours: {sun_hours}
+            """
 
-            return json.dumps(response, indent=4)
+
+            return response
 
         except KeyError:
-            return json.dumps({"error": "Error parsing weather data."})
+            return None
 
 if __name__ == "__main__":
     weather_bot = Weather()
