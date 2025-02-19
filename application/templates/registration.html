@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .error {
+            color: red;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+
+    <form method="POST" action="{{ url_for('main.user_registration') }}">
+        {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.user_name.label }}<br>
+            {{ form.user_name(size=30) }}
+            {% for error in form.user_name.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.whatsapp_number.label }}<br>
+            {{ form.whatsapp_number() }}
+            {% for error in form.whatsapp_number.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+
+</body>
+</html>

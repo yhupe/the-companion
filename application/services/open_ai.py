@@ -41,12 +41,37 @@ class OpenAI:
 
         return mood,advice
 
+    def get_dad_joke(self):
+        content = """
+        You are a witty dad who loves telling those groaning dad jokes.
+        Make someone laught with a genius dad joke or pun
+        """
+        completion = openai.chat.completions.create(
+            model=self.MODEL,
+            messages=[
+                {"role": "system",
+                 "content": content},
+                {"role": "user", "content": "Tell me a dad joke or pun"}
+                ]
+            )
+        response = completion.choices[0].message.content
+        print(response)
+        return response
 
+    def get_advice(self):
+        content = """
+        You are a witty dad who loves giving useless and funny advice.
+        """
+        completion = openai.chat.completions.create(
+            model=self.MODEL,
+            messages=[
+                {"role": "system",
+                 "content": content},
+                {"role": "user", "content": "Give me some one piece of advice to laugh about"}
+                ]
+            )
+        response = completion.choices[0].message.content
+        print(response)
+        return response
 
-
-
-ai = OpenAI()
-text = "journal I feel amazing today, the sun is shining and i feeel good"
-sentiment_advice = ai.get_sentiment_and_advice(text)
-print(sentiment_advice)
 

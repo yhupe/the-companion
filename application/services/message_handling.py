@@ -5,10 +5,10 @@ from pathlib import Path
 class MessageHandling:
     def __init__(self):
         storage_path = Path(__file__).parent.parent
-
+        self.local_data = {}
         self.storage = storage_path / "data_base" / "message_history.json"
         self.load_storage()
-        self.local_data = {}
+
 
     def load_storage(self):
         """Loads message history from JSON file, handles missing or corrupt files."""

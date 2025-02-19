@@ -1,10 +1,16 @@
-[
-    {
-        "WHATSAPP_NR": {
-            "Date": "2024-02-02",
-            "From": "from whatsapp +12234214",
-            "Name": "Suzanna Sum",
-            "Age": "78"
+{
+    "whatsapp-doc": [
+        {
+            "WHATSAPP_NR": {
+                "Date": "2024-02-02",
+                "user_name": "Franz"
+            }
         }
-    }
-]
+    ],
+    "123456": [
+        {
+            "Francis": "Francis",
+            "2025-02-19 14:56:43.204731": "2025-02-19 14:56:43.204731"
+        }
+    ]
+}
