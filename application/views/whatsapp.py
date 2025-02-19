@@ -75,6 +75,7 @@ def whatsapp_incoming():
 
     match command:
         case "trivia":
+
             send_whatsapp_message(sender_number,response_text)
             send_trivia_question(sender_number)
         case "journal":
