@@ -18,11 +18,18 @@ This project demonstrates how to use Twilio’s API to send and receive messages
 - Handle incoming WhatsApp messages (optional for webhook setup).
 - Use Poetry for dependency management and environment setup.
 
-**Prerequisites**
+## Contributing
+We welcome contributions! Please follow our [Contribution Guidelines](https://github.com/the-companion/wiki/Contributing).
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes with a meaningful message.
+4. Open a pull request.
+
 
 Before running this project, ensure you have the following:
 - Python 3.x
 - Poetry
+- Pytest
 - Twilio Account (Get your Account SID and Auth Token from Twilio Console)
 - Twilio WhatsApp-enabled Phone Number
 

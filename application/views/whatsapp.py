@@ -176,9 +176,9 @@ def get_weather_from_api(sender_number):
 
 
 def send_cat_image(sender_number: str):
-    image_url = get_cat_image()  # Get cat image URL
+    image_url = get_cat_image()
     if image_url:
-        send_whatsapp_image(sender_number, image_url)  # Send it via Twilio
+        send_whatsapp_image(sender_number, image_url)
     else:
         print("Failed to get a cat image.")
 
@@ -186,7 +186,7 @@ def send_whatsapp_image(sender_number: str, image_url: str):
     message = client.messages.create(
         from_=TWILIO_WHATSAPP_NUMBER,
         to=sender_number,
-        media_url=[image_url]  # The image URL from the API response
+        media_url=[image_url]
     )
     print(f"Image sent with SID: {message.sid}")
     return message.sid
