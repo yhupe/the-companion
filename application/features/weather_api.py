@@ -51,5 +51,3 @@ def get_weather():
         return None
 
 
-
-

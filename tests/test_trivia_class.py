@@ -1,7 +1,7 @@
 import pytest
 import json
 from unittest.mock import patch
-from application.services.trivia_class import TriviaGame
+from application.features.trivia_class import TriviaGame
 
 
 @pytest.fixture

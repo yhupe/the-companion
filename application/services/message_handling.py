@@ -6,7 +6,7 @@ class MessageHandling:
     def __init__(self):
         storage_path = Path(__file__).parent.parent
         self.local_data = {}
-        self.storage = storage_path / "data_base" / "message_history.json"
+        self.storage = storage_path / "db" / "message_history.json"
         self.load_storage()
 
 

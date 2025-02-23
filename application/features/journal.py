@@ -7,7 +7,7 @@ class JournalHandling:
         storage_path = Path(__file__).parent.parent
         self.local_data = {}
 
-        self.storage = storage_path / "data_base" / "journal.json"
+        self.storage = storage_path / "db" / "journal.json"
         self.load_storage()
 
 
