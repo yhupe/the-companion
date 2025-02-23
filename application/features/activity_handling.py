@@ -2,7 +2,7 @@ import json
 
 class ActivityHandling:
     def __init__(self):
-        path = "../data_base/activity.json"
+        path = "../db/activity.json"
         self.storage = path
         print(self.storage)
         self.local_data = []

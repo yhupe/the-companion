@@ -2,7 +2,7 @@ import json
 
 class MedicationHandling:
     def __init__(self):
-        path = "../data_base/medication.json"
+        path = "../db/medication.json"
         self.storage = path
         print(self.storage)
         self.local_data = []
